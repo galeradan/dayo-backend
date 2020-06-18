@@ -13,10 +13,6 @@ require('dotenv').config()
 
 const app = express() 
 
-
-app.use(cors(), bodyParser.json());
-app.use('/graphql', graphqlHTTP({schema: graphqlSchema, graphiql: true}));
-
 const dbname = "dayo-db"
 const uname = "admin"
 const password = "dayo123"
@@ -26,7 +22,8 @@ mongoose.connect(
 		// `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@dayo-db-3ito1.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`
 		`mongodb+srv://${uname}:${password}@dayo-db-3ito1.mongodb.net/${dbname}?retryWrites=true&w=majority`
 	)
-
+app.use(cors(), bodyParser.json());
+app.use('/graphql', graphqlHTTP({schema: graphqlSchema, graphiql: true}));
 
 
 mongoose.connection.once('open', ()=>{
