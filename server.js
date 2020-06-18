@@ -12,6 +12,7 @@ require('dotenv').config()
 
 
 const app = express() 
+let port = process.env.PORT || 4000
 
 
 app.use(cors(), bodyParser.json());
@@ -32,8 +33,8 @@ mongoose.connect(
 mongoose.connection.once('open', ()=>{
 	console.log("Now connected to MongoDB Atlas!");
 }).then(()=>{
-		app.listen(4000,function(){
-		console.log("Now listening for requests on port 4000");
+		app.listen(port,function(){
+		console.log(`Now listening for requests on port`);
 		})
 	}).catch(err =>{
 		console.log(err)
