@@ -102,5 +102,21 @@ module.exports = new GraphQLObjectType({
 		        return Booking.find(bookings)
 		    }
 		}, 
+		emailCheck: {
+			type: new GraphQLList(UserType),
+		    args: {
+				email: {type: GraphQLString}
+			},
+		    resolve: (parent, args) => {
+		    	let userEmail = {email: args.email}
+		        return User.find(userEmail)
+		    }
+		},
+		users: {
+		    type: new GraphQLList(UserType),
+		    resolve: (parent, args) => {
+		        return User.find({})
+		    }
+		}, 
 	}
 })

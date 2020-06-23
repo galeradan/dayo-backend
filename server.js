@@ -18,14 +18,12 @@ let port = process.env.PORT || 4000
 app.use(cors(), bodyParser.json());
 app.use('/graphql', graphqlHTTP({schema: graphqlSchema, graphiql: true}));
 
-const dbname = "dayo-db"
-const uname = "admin"
-const password = "dayo123"
+
 // mongoose.connect('mongodb://localhost:27017/merng_dayo');
 // console.log(process.env.MONGO_USER)
 mongoose.connect(
-		// `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@dayo-db-3ito1.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`
-		`mongodb+srv://${uname}:${password}@dayo-db-3ito1.mongodb.net/${dbname}?retryWrites=true&w=majority`
+		`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@dayo-db-3ito1.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`
+		
 	)
 
 
